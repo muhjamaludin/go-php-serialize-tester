@@ -1,0 +1,7 @@
+[
+ {
+  "base": "testing bigbox bigenvelope",
+  "code": "GoSerializeNumber",
+  "result": "s:26:\"testing bigbox bigenvelope\";"
+ }
+]

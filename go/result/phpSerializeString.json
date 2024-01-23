@@ -1,0 +1,5 @@
+{
+    "base": "test string php complex 12345678",
+    "code": "PHPSerializeNumber",
+    "result": "s:32:\"test string php complex 12345678\";"
+}

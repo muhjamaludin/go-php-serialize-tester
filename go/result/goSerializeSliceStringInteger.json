@@ -1,0 +1,12 @@
+{
+ "base": [
+  0,
+  1,
+  2000000,
+  "luca",
+  "gunung Tambora",
+  7
+ ],
+ "code": "GoSerializeSliceStringNumber",
+ "result": "a:6:{i:0;i:0;i:1;i:1;i:2;i:2000000;i:3;s:4:\"luca\";i:4;s:14:\"gunung Tambora\";i:5;i:7;}"
+}

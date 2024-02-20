@@ -21,4 +21,24 @@ class Serializer
     {
         return unserialize($baseSerialize);
     }
+
+    public function serializeArray(array $arr)
+    {
+        return serialize($arr);
+    }
+
+    public function unSerializeArray(string $baseSerialize)
+    {
+        return unserialize($baseSerialize);
+    }
+
+    public function serializeArrayAssociatif(array $arr)
+    {
+        return serialize($arr);
+    }
+
+    public function unSerializeArrayAssociatif(string $baseSerialize)
+    {
+        return unserialize($baseSerialize);
+    }
 }

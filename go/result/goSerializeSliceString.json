@@ -1,0 +1,10 @@
+{
+ "base": [
+  "abc",
+  "1Dor",
+  "",
+  "9_000_000"
+ ],
+ "code": "GoSerializeSliceString",
+ "result": "a:4:{i:0;s:3:\"abc\";i:1;s:4:\"1Dor\";i:2;s:0:\"\";i:3;s:9:\"9_000_000\";}"
+}

@@ -1,5 +1,5 @@
 {
  "base": "test string go complex 12345678",
- "code": "GoSerializeNumber",
+ "code": "GoSerializeString",
  "result": "s:31:\"test string go complex 12345678\";"
 }

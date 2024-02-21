@@ -1,5 +1,6 @@
 <?php
 
+use PhpParser\JsonDecoder;
 use PHPUnit\Framework\TestCase;
 
 require_once "serializer.php";
@@ -199,5 +200,82 @@ class SerializerTest extends TestCase
         $TestBase = $json_data['base'];
         // compare unserialize php to serialize go
         $this->assertEquals($TestBase, $serializer->unSerializeArray($json_data['result']));
+    }
+
+    public function testSerializeArrayAssociatif()
+    {
+        // write serialize php to json
+        $serializer = new Serializer;
+
+        $arr = array(
+            "adapter" => "PdoMysql",
+            "host" => "172.0.0.1",
+            "port" => 3306,
+            "status" => true
+        );
+        $result = $serializer->serializeArrayAssociatif($arr);
+
+        $phpSerialize = array(
+            "base" => $arr,
+            "code" => "PHPSerializeArrayAssociatif",
+            "result" => $result
+        );
+
+        $path = "../go/result/phpSerializeArrayAssociatif.json";
+        // convert JSON data from an array to string
+        $jsonString = json_encode($phpSerialize, JSON_PRETTY_PRINT);
+        // write in the file
+        $fp = fopen($path, 'w');
+        fwrite($fp, $jsonString);
+        fclose($fp);
+
+        // read goSerializeInterface json
+        $json = file_get_contents("../go/result/goSerializeMapInterface.json");
+        $json_data = json_decode($json, true);
+
+        // get base data
+        $TestBase = $json_data['base'];
+        // compare unserialize php to serialize go
+        $this->assertEquals($TestBase, $serializer->unSerializeArrayAssociatif($json_data['result']));
+    }
+
+    public function testSerializeArrayOfArrayAssociatif()
+    {
+        // write serialize php to json
+        $serializer = new Serializer;
+
+        $arr = array(
+            "connection" => "MySQL",
+            "params" => array(
+                "adapter" => "PdoMysql",
+                "host" => "172.0.0.1",
+                "port" => 3306,
+                "status" => true
+            )
+        );
+        $result = $serializer->serializeArrayAssociatif($arr);
+
+        $phpSerialize = array(
+            "base" => $arr,
+            "code" => "PHPSerializeArrayOfArrayAssociatif",
+            "result" => $result
+        );
+
+        $path = "../go/result/phpSerializeArrayOfArrayAssociatif.json";
+        // convert JSON data from an array to string
+        $jsonString = json_encode($phpSerialize, JSON_PRETTY_PRINT);
+        // write in the file
+        $fp = fopen($path, 'w');
+        fwrite($fp, $jsonString);
+        fclose($fp);
+
+        // read goSerializeInterfaceInterface json
+        $json = file_get_contents("../go/result/goSerializeMapInterfaceInterface.json");
+        $json_data = json_decode($json, true);
+
+        // get base data
+        $TestBase = $json_data['base'];
+        // compare unserialize php to serialize go
+        $this->assertEquals($TestBase, $serializer->unSerializeArrayAssociatif($json_data['result']));
     }
 }

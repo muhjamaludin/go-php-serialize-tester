@@ -1,0 +1,10 @@
+{
+ "base": {
+  "adapter": "PdoMysql",
+  "host": "127.0.0.1",
+  "port": 3306,
+  "status": false
+ },
+ "code": "GoSerializeMapString",
+ "result": "a:4:{s:7:\"adapter\";s:8:\"PdoMysql\";s:4:\"host\";s:9:\"127.0.0.1\";s:4:\"port\";i:3306;s:6:\"status\";b:0;}"
+}

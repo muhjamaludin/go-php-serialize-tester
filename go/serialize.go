@@ -103,3 +103,23 @@ func ReadSerializeSliceStringIntBoolean(serialize string) []interface{} {
 
 	return result
 }
+
+// function writer struct to php serialize format
+func WriteSerializeMapInterface(goStruct map[string]interface{}) string {
+	out, err := phpserialize.Marshal(goStruct, nil)
+	if err != nil {
+		panic(err)
+	}
+
+	return string(out)
+}
+
+func ReadSerializeMapInterface(serialize string) map[interface{}]interface{} {
+	var result map[interface{}]interface{}
+	err := phpserialize.Unmarshal([]byte(serialize), &result)
+	if err != nil {
+		panic(err)
+	}
+
+	return result
+}

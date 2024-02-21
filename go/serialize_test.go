@@ -238,3 +238,100 @@ func TestSerializeSliceStringIntegerBoolean(t *testing.T) {
 		t.Errorf("Wrong! Serialize string must be: %.2v", strs.Base)
 	}
 }
+
+func TestSerializeMapInterface(t *testing.T) {
+	// test assert
+	goMapInterface := map[string]interface{}{
+		"adapter": "PdoMysql",
+		"host":    "127.0.0.1",
+		"port":    3306,
+		"status":  false,
+	}
+
+	// declare json object serialize
+	data := map[string]interface{}{
+		"code":   "GoSerializeMapString",
+		"base":   goMapInterface,
+		"result": WriteSerializeMapInterface(goMapInterface),
+	}
+
+	// write to file json
+	file, _ := json.MarshalIndent(data, "", " ")
+
+	err := os.WriteFile("./result/goSerializeMapInterface.json", file, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// read phpSerializeString json
+	jsonFile, err := os.ReadFile("./result/phpSerializeArrayAssociatif.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// type struct serialize
+	type SliceStr struct {
+		Base   []string `json:"base"`
+		Code   string   `json:"code"`
+		Result string   `json:"result"`
+	}
+
+	// get base data
+	var strs SliceStr
+	json.Unmarshal(jsonFile, &strs)
+
+	// compare unserialize go to serialize php
+	if reflect.DeepEqual(ReadSerializeMapInterface(strs.Result), strs.Base) {
+		t.Errorf("Wrong! Serialize string must be: %.2v", strs.Base)
+	}
+}
+
+func TestSerializeMapInterfaceInterface(t *testing.T) {
+	// test assert
+	goMapInterfaceInterface := map[string]interface{}{
+		"connection": "Mysql",
+		"params": map[string]interface{}{
+			"adapter": "PdoMysql",
+			"host":    "127.0.0.1",
+			"port":    3306,
+			"status":  false,
+		},
+	}
+
+	// declare json object serialize
+	data := map[string]interface{}{
+		"code":   "GoSerializeMapString",
+		"base":   goMapInterfaceInterface,
+		"result": WriteSerializeMapInterface(goMapInterfaceInterface),
+	}
+
+	// write to file json
+	file, _ := json.MarshalIndent(data, "", " ")
+
+	err := os.WriteFile("./result/goSerializeMapInterfaceInterface.json", file, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// read phpSerializeString json
+	jsonFile, err := os.ReadFile("./result/phpSerializeArrayOfArrayAssociatif.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// type struct serialize
+	type SliceStr struct {
+		Base   []string `json:"base"`
+		Code   string   `json:"code"`
+		Result string   `json:"result"`
+	}
+
+	// get base data
+	var strs SliceStr
+	json.Unmarshal(jsonFile, &strs)
+
+	// compare unserialize go to serialize php
+	if reflect.DeepEqual(ReadSerializeMapInterface(strs.Result), strs.Base) {
+		t.Errorf("Wrong! Serialize string must be: %.2v", strs.Base)
+	}
+}
